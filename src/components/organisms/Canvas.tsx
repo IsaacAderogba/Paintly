@@ -4,8 +4,10 @@ import React from "react";
 // styles
 import { styled } from "../../~reusables/contexts/ThemeContext";
 
-const Canvas: React.FC = ({ children }) => {
-  return <StyledCanvas>{children}</StyledCanvas>;
+const Canvas: React.FC = () => {
+  return <StyledCanvas>
+    hi
+  </StyledCanvas>;
 };
 
 const StyledCanvas = styled.canvas`

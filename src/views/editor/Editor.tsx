@@ -1,5 +1,6 @@
 // modules
 import React from "react";
+import { RouteComponentProps } from "react-router-dom";
 
 // components/logic
 import Toolbox from "../../components/organisms/Toolbox";
@@ -13,7 +14,7 @@ import Swatches from "../../components/molecules/Swatches";
 // styles
 import { styled } from "../../~reusables/contexts/ThemeContext";
 
-const Editor: React.FC = () => {
+const Editor: React.FC<RouteComponentProps> = () => {
   return (
     <StyledEditor>
       <Toolbox>
