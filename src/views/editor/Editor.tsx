@@ -7,7 +7,7 @@ import Toolbox from "../../components/organisms/Toolbox";
 import Canvas from "../../components/organisms/Canvas";
 import Commands from "../../components/molecules/Commands";
 import Shapes from "../../components/molecules/Shapes";
-import PencilsAndBrushes from "../../components/molecules/PencilsAndBrushes";
+import Tools from "../../components/molecules/Tools";
 import LineWidth from "../../components/molecules/LineWidth";
 import Swatches from "../../components/molecules/Swatches";
 
@@ -18,14 +18,14 @@ const Editor: React.FC<RouteComponentProps> = () => {
   return (
     <StyledEditor>
       <Toolbox>
-        <Commands />
-        <Shapes />
-        <PencilsAndBrushes />
-        <LineWidth />
+        <Commands className="group commands" />
+        <Shapes className="group shapes" />
+        <Tools className="group tools" />
+        <LineWidth className="group linewidth" />
       </Toolbox>
       <Canvas />
       <Toolbox>
-        <Swatches />
+        <Swatches className="group swatches" />
       </Toolbox>
     </StyledEditor>
   );

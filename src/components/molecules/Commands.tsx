@@ -1,7 +1,12 @@
-import React from 'react';
+import React from "react";
+import { styled } from "../../~reusables/contexts/ThemeContext";
 
-const Commands: React.FC = () => {
-  return <div>Commands</div>
-}
+const Commands: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  className
+}) => {
+  return <StyledCommands className={className}>Commands</StyledCommands>;
+};
+
+const StyledCommands = styled.div``;
 
 export default Commands;
