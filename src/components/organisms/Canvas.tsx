@@ -1,7 +1,16 @@
+// modules
 import React from "react";
 
-const Canvas: React.FC = () => {
-  return <div>Canvas</div>;
+// styles
+import { styled } from "../../~reusables/contexts/ThemeContext";
+
+const Canvas: React.FC = ({ children }) => {
+  return <StyledCanvas>{children}</StyledCanvas>;
 };
+
+const StyledCanvas = styled.canvas`
+  width: 640px;
+  height: 480px;
+`;
 
 export default Canvas;
