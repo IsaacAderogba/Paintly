@@ -30,6 +30,8 @@ const Editor: React.FC<RouteComponentProps> = () => {
     </StyledEditor>
   );
 };
-const StyledEditor = styled.section``;
+const StyledEditor = styled.section`
+  
+`;
 
 export default Editor;

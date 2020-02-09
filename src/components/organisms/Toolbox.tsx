@@ -18,7 +18,9 @@ const StyledToolbox = styled("aside")<{ align: "left" | "right" }>`
   height: 100vh;
   position: absolute;
   background-color: white;
-  width: 100px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
   left: ${p => (p.align === "left" ? "0px" : "auto")};
   border-right: ${p =>
     p.align === "left" ? `1px solid ${p.theme.colors.greys[8]}` : 0};

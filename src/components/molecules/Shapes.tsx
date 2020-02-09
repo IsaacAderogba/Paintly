@@ -8,24 +8,26 @@ import { FiTriangle } from "react-icons/fi";
 import dataAttributes from "../../~reusables/constants/dataAttributes";
 
 // styles
-import { styled } from "../../~reusables/contexts/ThemeContext";
+import { styled, useTheme } from "../../~reusables/contexts/ThemeContext";
 
 const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className
 }) => {
+  const theme = useTheme();
+
   return (
     <StyledShapes className={className}>
       <div data-shape={dataAttributes.line} title="Line">
-        <AiOutlineMinus fontSize={40} />
+        <AiOutlineMinus fontSize={32} color={theme.colors.greys[2]} />
       </div>
       <div data-shape={dataAttributes.rectangle} title="Rectangle">
-        <FaRegSquare fontSize={40} />
+        <FaRegSquare fontSize={32} color={theme.colors.greys[2]} />
       </div>
       <div data-shape={dataAttributes.circle} title="Circle">
-        <FaRegCircle fontSize={40} />
+        <FaRegCircle fontSize={32} color={theme.colors.greys[2]} />
       </div>
       <div data-shape={dataAttributes.triangle} title="Triangle">
-        <FiTriangle fontSize={40} />
+        <FiTriangle fontSize={32} color={theme.colors.greys[2]} />
       </div>
     </StyledShapes>
   );
@@ -36,6 +38,22 @@ const StyledShapes = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-bottom: thin solid ${p => p.theme.colors.greys[8]};
+  flex: 2;
+
+  & > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: ${p => `${p.theme.space[5]}px ${p.theme.space[7]}px`};
+  }
+
+  & > div:hover {
+    background: ${p => p.theme.colors.lightBackground};
+  }
 `;
 
 export default Shapes;
