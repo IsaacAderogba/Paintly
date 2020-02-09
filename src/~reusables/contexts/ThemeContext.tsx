@@ -88,7 +88,7 @@ export const theme = {
     text: "#4A5568",
     lightTitle: "#FFFFFF",
     lightText: "#A0AEC0",
-    background: "#182432",
+    background: "#E5E5E5",
     lightBackground: "#F5F7F9",
     grey: "#d1ddeb",
     primaries: [

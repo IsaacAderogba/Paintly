@@ -17,14 +17,14 @@ import { styled } from "../../~reusables/contexts/ThemeContext";
 const Editor: React.FC<RouteComponentProps> = () => {
   return (
     <StyledEditor>
-      <Toolbox>
+      <Toolbox align="left">
         <Commands className="group commands" />
         <Shapes className="group shapes" />
         <Tools className="group tools" />
         <LineWidth className="group linewidth" />
       </Toolbox>
       <Canvas />
-      <Toolbox>
+      <Toolbox align="right">
         <Swatches className="group swatches" />
       </Toolbox>
     </StyledEditor>
