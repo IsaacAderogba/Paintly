@@ -35,12 +35,13 @@ const StyledCommands = styled.div`
 
   & > div {
     flex: 1;
+    min-height: 48px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    padding: ${p => `${p.theme.space[5]}px ${p.theme.space[7]}px`};
+    padding: ${p => `${p.theme.space[6]}px ${p.theme.space[7]}px`};
   }
 
   & > div:hover {
