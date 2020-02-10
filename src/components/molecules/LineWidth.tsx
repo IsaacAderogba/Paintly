@@ -1,19 +1,33 @@
 // modules
-import React from "react";
+import React, { useContext } from "react";
 import { css } from "styled-components/macro";
 
 // components/logic
+import { EditorContext } from "../../~reusables/contexts/EditorContext";
+import dataAttributes from "../../~reusables/constants/dataAttributes";
 
 // styles
-import { styled } from "../../~reusables/contexts/ThemeContext";
-import dataAttributes from "../../~reusables/constants/dataAttributes";
+import { styled, ThemeContext } from "../../~reusables/contexts/ThemeContext";
 
 const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className
 }) => {
+  const { state, dispatch } = useContext(EditorContext);
+  const {
+    colors: { lightBackground }
+  } = useContext(ThemeContext);
+
   return (
     <StyledLineWidth className={className}>
-      <div data-line-width={dataAttributes.lineWidth1} title="1 Pixel">
+      <div
+        data-line-width={dataAttributes.lineWidth1}
+        title="1 Pixel"
+        css={css`
+          background-color: ${dataAttributes.lineWidth1 === state.linewidth
+            ? lightBackground
+            : "#ffffff"};
+        `}
+      >
         <div
           css={css`
             width: 1px;
@@ -21,7 +35,15 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
           `}
         />
       </div>
-      <div data-line-width={dataAttributes.lineWidth2} title="2 Pixel">
+      <div
+        data-line-width={dataAttributes.lineWidth2}
+        title="2 Pixel"
+        css={css`
+          background-color: ${dataAttributes.lineWidth2 === state.linewidth
+            ? lightBackground
+            : "#ffffff"};
+        `}
+      >
         <div
           css={css`
             width: 2px;
@@ -29,7 +51,15 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
           `}
         />
       </div>
-      <div data-line-width={dataAttributes.lineWidth3} title="3 Pixels">
+      <div
+        data-line-width={dataAttributes.lineWidth3}
+        title="3 Pixels"
+        css={css`
+          background-color: ${dataAttributes.lineWidth3 === state.linewidth
+            ? lightBackground
+            : "#ffffff"};
+        `}
+      >
         <div
           css={css`
             width: 3px;
@@ -37,7 +67,15 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
           `}
         />
       </div>
-      <div data-line-width={dataAttributes.lineWidth4} title="4 Pixels">
+      <div
+        data-line-width={dataAttributes.lineWidth4}
+        title="4 Pixels"
+        css={css`
+          background-color: ${dataAttributes.lineWidth4 === state.linewidth
+            ? lightBackground
+            : "#ffffff"};
+        `}
+      >
         <div
           css={css`
             width: 4px;
@@ -45,7 +83,15 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
           `}
         />
       </div>
-      <div data-line-width={dataAttributes.lineWidth5} title="5 Pixels">
+      <div
+        data-line-width={dataAttributes.lineWidth5}
+        title="5 Pixels"
+        css={css`
+          background-color: ${dataAttributes.lineWidth5 === state.linewidth
+            ? lightBackground
+            : "#ffffff"};
+        `}
+      >
         <div
           css={css`
             width: 5px;

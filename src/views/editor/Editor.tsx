@@ -15,6 +15,7 @@ import Swatches from "../../components/molecules/Swatches";
 import { styled } from "../../~reusables/contexts/ThemeContext";
 
 const Editor: React.FC<RouteComponentProps> = () => {
+  
   return (
     <StyledEditor>
       <Toolbox align="left">
@@ -30,8 +31,6 @@ const Editor: React.FC<RouteComponentProps> = () => {
     </StyledEditor>
   );
 };
-const StyledEditor = styled.section`
-  
-`;
+const StyledEditor = styled.section``;
 
 export default Editor;
