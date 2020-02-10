@@ -3,8 +3,11 @@ import React, { useContext } from "react";
 import { css } from "styled-components/macro";
 
 // components/logic
-import { EditorContext } from "../../~reusables/contexts/EditorContext";
-import dataAttributes from "../../~reusables/constants/dataAttributes";
+import {
+  EditorContext,
+  EditorActType
+} from "../../~reusables/contexts/EditorContext";
+import DataAttributesEnum from "../../~reusables/constants/dataAttributes";
 
 // styles
 import { styled, ThemeContext } from "../../~reusables/contexts/ThemeContext";
@@ -20,10 +23,18 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   return (
     <StyledLineWidth className={className}>
       <div
-        data-line-width={dataAttributes.lineWidth1}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              linewidth: DataAttributesEnum.lineWidth1
+            }
+          })
+        }
+        data-line-width={DataAttributesEnum.lineWidth1}
         title="1 Pixel"
         css={css`
-          background-color: ${dataAttributes.lineWidth1 === state.linewidth
+          background-color: ${DataAttributesEnum.lineWidth1 === state.linewidth
             ? lightBackground
             : "#ffffff"};
         `}
@@ -36,10 +47,18 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         />
       </div>
       <div
-        data-line-width={dataAttributes.lineWidth2}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              linewidth: DataAttributesEnum.lineWidth2
+            }
+          })
+        }
+        data-line-width={DataAttributesEnum.lineWidth2}
         title="2 Pixel"
         css={css`
-          background-color: ${dataAttributes.lineWidth2 === state.linewidth
+          background-color: ${DataAttributesEnum.lineWidth2 === state.linewidth
             ? lightBackground
             : "#ffffff"};
         `}
@@ -52,10 +71,18 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         />
       </div>
       <div
-        data-line-width={dataAttributes.lineWidth3}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              linewidth: DataAttributesEnum.lineWidth3
+            }
+          })
+        }
+        data-line-width={DataAttributesEnum.lineWidth3}
         title="3 Pixels"
         css={css`
-          background-color: ${dataAttributes.lineWidth3 === state.linewidth
+          background-color: ${DataAttributesEnum.lineWidth3 === state.linewidth
             ? lightBackground
             : "#ffffff"};
         `}
@@ -68,10 +95,18 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         />
       </div>
       <div
-        data-line-width={dataAttributes.lineWidth4}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              linewidth: DataAttributesEnum.lineWidth4
+            }
+          })
+        }
+        data-line-width={DataAttributesEnum.lineWidth4}
         title="4 Pixels"
         css={css`
-          background-color: ${dataAttributes.lineWidth4 === state.linewidth
+          background-color: ${DataAttributesEnum.lineWidth4 === state.linewidth
             ? lightBackground
             : "#ffffff"};
         `}
@@ -84,10 +119,18 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         />
       </div>
       <div
-        data-line-width={dataAttributes.lineWidth5}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              linewidth: DataAttributesEnum.lineWidth5
+            }
+          })
+        }
+        data-line-width={DataAttributesEnum.lineWidth5}
         title="5 Pixels"
         css={css`
-          background-color: ${dataAttributes.lineWidth5 === state.linewidth
+          background-color: ${DataAttributesEnum.lineWidth5 === state.linewidth
             ? lightBackground
             : "#ffffff"};
         `}

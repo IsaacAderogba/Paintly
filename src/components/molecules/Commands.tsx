@@ -3,7 +3,7 @@ import React from "react";
 import { FaUndo, FaCloudDownloadAlt } from "react-icons/fa";
 
 // components/logic
-import dataAttributes from "../../~reusables/constants/dataAttributes";
+import DataAttributesEnum from "../../~reusables/constants/dataAttributes";
 
 // styles
 import { styled, useTheme } from "../../~reusables/contexts/ThemeContext";
@@ -15,10 +15,10 @@ const Commands: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 
   return (
     <StyledCommands className={className}>
-      <div data-command={dataAttributes.undo} title="Undo">
+      <div data-command={DataAttributesEnum.undo} title="Undo">
         <FaUndo fontSize={32} color={theme.colors.greys[2]} />
       </div>
-      <div data-command={dataAttributes.download} title="Download">
+      <div data-command={DataAttributesEnum.download} title="Download">
         <FaCloudDownloadAlt fontSize={32} color={theme.colors.greys[2]} />
       </div>
     </StyledCommands>

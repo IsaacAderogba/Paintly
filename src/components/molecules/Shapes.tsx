@@ -6,8 +6,11 @@ import { FaRegSquare, FaRegCircle } from "react-icons/fa";
 import { FiTriangle } from "react-icons/fi";
 
 // components/logic
-import dataAttributes from "../../~reusables/constants/dataAttributes";
-import { EditorContext } from "../../~reusables/contexts/EditorContext";
+import DataAttributesEnum from "../../~reusables/constants/dataAttributes";
+import {
+  EditorContext,
+  EditorActType
+} from "../../~reusables/contexts/EditorContext";
 
 // styles
 import { styled, useTheme } from "../../~reusables/contexts/ThemeContext";
@@ -21,10 +24,19 @@ const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   return (
     <StyledShapes className={className}>
       <div
-        data-shape={dataAttributes.line}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              tool: "",
+              shape: DataAttributesEnum.line
+            }
+          })
+        }
+        data-shape={DataAttributesEnum.line}
         title="Line"
         css={css`
-          background-color: ${dataAttributes.line === state.shape
+          background-color: ${DataAttributesEnum.line === state.shape
             ? theme.colors.lightBackground
             : "#ffffff"};
         `}
@@ -32,10 +44,19 @@ const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         <AiOutlineMinus fontSize={32} color={theme.colors.greys[2]} />
       </div>
       <div
-        data-shape={dataAttributes.rectangle}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              tool: "",
+              shape: DataAttributesEnum.rectangle
+            }
+          })
+        }
+        data-shape={DataAttributesEnum.rectangle}
         title="Rectangle"
         css={css`
-          background-color: ${dataAttributes.rectangle === state.shape
+          background-color: ${DataAttributesEnum.rectangle === state.shape
             ? theme.colors.lightBackground
             : "#ffffff"};
         `}
@@ -43,10 +64,19 @@ const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         <FaRegSquare fontSize={32} color={theme.colors.greys[2]} />
       </div>
       <div
-        data-shape={dataAttributes.circle}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              tool: "",
+              shape: DataAttributesEnum.circle
+            }
+          })
+        }
+        data-shape={DataAttributesEnum.circle}
         title="Circle"
         css={css`
-          background-color: ${dataAttributes.circle === state.shape
+          background-color: ${DataAttributesEnum.circle === state.shape
             ? theme.colors.lightBackground
             : "#ffffff"};
         `}
@@ -54,10 +84,19 @@ const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         <FaRegCircle fontSize={32} color={theme.colors.greys[2]} />
       </div>
       <div
-        data-shape={dataAttributes.triangle}
+        onClick={() =>
+          dispatch({
+            type: EditorActType.UPDATE_CANVAS_TOOL,
+            payload: {
+              tool: "",
+              shape: DataAttributesEnum.triangle
+            }
+          })
+        }
+        data-shape={DataAttributesEnum.triangle}
         title="Triangle"
         css={css`
-          background-color: ${dataAttributes.triangle === state.shape
+          background-color: ${DataAttributesEnum.triangle === state.shape
             ? theme.colors.lightBackground
             : "#ffffff"};
         `}

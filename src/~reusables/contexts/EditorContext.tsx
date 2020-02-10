@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import dataAttributes from "../constants/dataAttributes";
+import DataAttributesEnum from "../constants/dataAttributes";
 
 // available state
 interface IEditorState {
@@ -12,24 +12,30 @@ interface IEditorState {
 
 const initialState: IEditorState = {
   commands: "",
-  shape: dataAttributes.line,
+  shape: DataAttributesEnum.line,
   tool: "",
-  linewidth: dataAttributes.lineWidth1,
-  swatch: dataAttributes.black
+  linewidth: DataAttributesEnum.lineWidth1,
+  swatch: DataAttributesEnum.black
 };
 
 // available types
 export enum EditorActType {
-  DUMMY_ACTION = "DUMMY_ACTION"
+  UPDATE_CANVAS_TOOL = "UPDATE_CANVAS_TOOL"
 }
 
 // avaiable actions
-interface DummyAction {
-  type: EditorActType.DUMMY_ACTION;
-  payload: string;
+interface IUpdateCanvasTool {
+  type: EditorActType.UPDATE_CANVAS_TOOL;
+  payload: {
+    commands?: DataAttributesEnum | "";
+    shape?: DataAttributesEnum | "";
+    tool?: DataAttributesEnum | "";
+    linewidth?: DataAttributesEnum | "";
+    swatch?: DataAttributesEnum | "";
+  };
 }
 
-type IEditorActions = DummyAction;
+type IEditorActions = IUpdateCanvasTool;
 
 export const EditorContext = createContext<{
   state: IEditorState;
@@ -38,8 +44,11 @@ export const EditorContext = createContext<{
 
 function reducer(state: IEditorState, action: IEditorActions): IEditorState {
   switch (action.type) {
-    case EditorActType.DUMMY_ACTION:
-      return state;
+    case EditorActType.UPDATE_CANVAS_TOOL:
+      return {
+        ...state,
+        ...action.payload
+      };
     default:
       return state;
   }
