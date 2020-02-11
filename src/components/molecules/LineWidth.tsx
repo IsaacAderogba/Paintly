@@ -12,6 +12,14 @@ import DataAttributesEnum from "../../~reusables/constants/dataAttributes";
 // styles
 import { styled, ThemeContext } from "../../~reusables/contexts/ThemeContext";
 
+const lineWidths = [
+  { lineWidth: DataAttributesEnum.lineWidth1 },
+  { lineWidth: DataAttributesEnum.lineWidth2 },
+  { lineWidth: DataAttributesEnum.lineWidth3 },
+  { lineWidth: DataAttributesEnum.lineWidth4 },
+  { lineWidth: DataAttributesEnum.lineWidth5 }
+];
+
 const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className
 }) => {
@@ -22,126 +30,32 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 
   return (
     <StyledLineWidth className={className}>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              linewidth: DataAttributesEnum.lineWidth1
-            }
-          })
-        }
-        data-line-width={DataAttributesEnum.lineWidth1}
-        title="1 Pixel"
-        css={css`
-          background-color: ${DataAttributesEnum.lineWidth1 === state.linewidth
-            ? lightBackground
-            : "#ffffff"};
-        `}
-      >
+      {lineWidths.map(({ lineWidth }) => (
         <div
+          onClick={() =>
+            dispatch({
+              type: EditorActType.UPDATE_CANVAS_TOOL,
+              payload: {
+                linewidth: lineWidth
+              }
+            })
+          }
+          data-line-width={lineWidth}
+          title={`${lineWidth} Pixel`}
           css={css`
-            width: 1px;
-            height: 1px;
+            background-color: ${lineWidth === state.linewidth
+              ? lightBackground
+              : "#ffffff"};
           `}
-        />
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              linewidth: DataAttributesEnum.lineWidth2
-            }
-          })
-        }
-        data-line-width={DataAttributesEnum.lineWidth2}
-        title="2 Pixel"
-        css={css`
-          background-color: ${DataAttributesEnum.lineWidth2 === state.linewidth
-            ? lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <div
-          css={css`
-            width: 2px;
-            height: 2px;
-          `}
-        />
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              linewidth: DataAttributesEnum.lineWidth3
-            }
-          })
-        }
-        data-line-width={DataAttributesEnum.lineWidth3}
-        title="3 Pixels"
-        css={css`
-          background-color: ${DataAttributesEnum.lineWidth3 === state.linewidth
-            ? lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <div
-          css={css`
-            width: 3px;
-            height: 3px;
-          `}
-        />
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              linewidth: DataAttributesEnum.lineWidth4
-            }
-          })
-        }
-        data-line-width={DataAttributesEnum.lineWidth4}
-        title="4 Pixels"
-        css={css`
-          background-color: ${DataAttributesEnum.lineWidth4 === state.linewidth
-            ? lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <div
-          css={css`
-            width: 4px;
-            height: 4px;
-          `}
-        />
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              linewidth: DataAttributesEnum.lineWidth5
-            }
-          })
-        }
-        data-line-width={DataAttributesEnum.lineWidth5}
-        title="5 Pixels"
-        css={css`
-          background-color: ${DataAttributesEnum.lineWidth5 === state.linewidth
-            ? lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <div
-          css={css`
-            width: 5px;
-            height: 5px;
-          `}
-        />
-      </div>
+        >
+          <div
+            css={css`
+              width: ${lineWidth}px;
+              height: ${lineWidth}px;
+            `}
+          />
+        </div>
+      ))}
     </StyledLineWidth>
   );
 };

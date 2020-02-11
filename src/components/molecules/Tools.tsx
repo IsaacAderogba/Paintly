@@ -14,6 +14,13 @@ import {
 // styles
 import { styled, useTheme } from "../../~reusables/contexts/ThemeContext";
 
+const tools = [
+  { tool: DataAttributesEnum.pencil, Component: FaPencilAlt },
+  { tool: DataAttributesEnum.brush, Component: FaBrush },
+  { tool: DataAttributesEnum.paint, Component: GiPaintBucket },
+  { tool: DataAttributesEnum.eraser, Component: FaEraser }
+];
+
 const Tools: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className
 }) => {
@@ -22,86 +29,28 @@ const Tools: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 
   return (
     <StyledTools className={className}>
-      <div
-        css={css`
-          background-color: ${DataAttributesEnum.pencil === state.tool
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: DataAttributesEnum.pencil,
-              shape: ""
-            }
-          })
-        }
-        data-tool={DataAttributesEnum.pencil}
-        title="Pencil"
-      >
-        <FaPencilAlt fontSize={32} color={theme.colors.greys[2]} />
-      </div>
-      <div
-        css={css`
-          background-color: ${DataAttributesEnum.brush === state.tool
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: DataAttributesEnum.brush,
-              shape: ""
-            }
-          })
-        }
-        data-tool={DataAttributesEnum.brush}
-        title="Brush"
-      >
-        <FaBrush fontSize={32} color={theme.colors.greys[2]} />
-      </div>
-      <div
-        css={css`
-          background-color: ${DataAttributesEnum.paint === state.tool
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: DataAttributesEnum.paint,
-              shape: ""
-            }
-          })
-        }
-        data-tool={DataAttributesEnum.paint}
-        title="Paint"
-      >
-        <GiPaintBucket fontSize={32} color={theme.colors.greys[2]} />
-      </div>
-      <div
-        css={css`
-          background-color: ${DataAttributesEnum.eraser === state.tool
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: DataAttributesEnum.eraser,
-              shape: ""
-            }
-          })
-        }
-        data-tool={DataAttributesEnum.eraser}
-        title="Eraser"
-      >
-        <FaEraser fontSize={32} color={theme.colors.greys[2]} />
-      </div>
+      {tools.map(({ tool, Component }) => (
+        <div
+          css={css`
+            background-color: ${tool === state.tool
+              ? theme.colors.lightBackground
+              : "#ffffff"};
+          `}
+          onClick={() =>
+            dispatch({
+              type: EditorActType.UPDATE_CANVAS_TOOL,
+              payload: {
+                tool: tool,
+                shape: ""
+              }
+            })
+          }
+          data-tool={tool}
+          title="Pencil"
+        >
+          <Component fontSize={32} color={theme.colors.greys[2]} />
+        </div>
+      ))}
     </StyledTools>
   );
 };
