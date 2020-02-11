@@ -15,6 +15,13 @@ import {
 // styles
 import { styled, useTheme } from "../../~reusables/contexts/ThemeContext";
 
+const shapes = [
+  { shape: DataAttributesEnum.line, Component: AiOutlineMinus },
+  { shape: DataAttributesEnum.rectangle, Component: FaRegSquare },
+  { shape: DataAttributesEnum.circle, Component: FaRegCircle },
+  { shape: DataAttributesEnum.triangle, Component: FiTriangle }
+];
+
 const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className
 }) => {
@@ -23,86 +30,28 @@ const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 
   return (
     <StyledShapes className={className}>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: "",
-              shape: DataAttributesEnum.line
-            }
-          })
-        }
-        data-shape={DataAttributesEnum.line}
-        title="Line"
-        css={css`
-          background-color: ${DataAttributesEnum.line === state.shape
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <AiOutlineMinus fontSize={32} color={theme.colors.greys[2]} />
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: "",
-              shape: DataAttributesEnum.rectangle
-            }
-          })
-        }
-        data-shape={DataAttributesEnum.rectangle}
-        title="Rectangle"
-        css={css`
-          background-color: ${DataAttributesEnum.rectangle === state.shape
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <FaRegSquare fontSize={32} color={theme.colors.greys[2]} />
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: "",
-              shape: DataAttributesEnum.circle
-            }
-          })
-        }
-        data-shape={DataAttributesEnum.circle}
-        title="Circle"
-        css={css`
-          background-color: ${DataAttributesEnum.circle === state.shape
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <FaRegCircle fontSize={32} color={theme.colors.greys[2]} />
-      </div>
-      <div
-        onClick={() =>
-          dispatch({
-            type: EditorActType.UPDATE_CANVAS_TOOL,
-            payload: {
-              tool: "",
-              shape: DataAttributesEnum.triangle
-            }
-          })
-        }
-        data-shape={DataAttributesEnum.triangle}
-        title="Triangle"
-        css={css`
-          background-color: ${DataAttributesEnum.triangle === state.shape
-            ? theme.colors.lightBackground
-            : "#ffffff"};
-        `}
-      >
-        <FiTriangle fontSize={32} color={theme.colors.greys[2]} />
-      </div>
+      {shapes.map(({ shape, Component }) => (
+        <div
+          onClick={() =>
+            dispatch({
+              type: EditorActType.UPDATE_CANVAS_TOOL,
+              payload: {
+                tool: "",
+                shape: shape
+              }
+            })
+          }
+          data-shape={shape}
+          title="Line"
+          css={css`
+            background-color: ${shape === state.shape
+              ? theme.colors.lightBackground
+              : "#ffffff"};
+          `}
+        >
+          <Component fontSize={32} color={theme.colors.greys[2]} />
+        </div>
+      ))}
     </StyledShapes>
   );
 };
