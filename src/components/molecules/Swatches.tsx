@@ -63,6 +63,7 @@ const Swatches: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
     <StyledSwatches className={className}>
       {colorSwatches.map(({ swatch }) => (
         <div
+          key={swatch}
           onClick={() =>
             dispatch({
               type: EditorActType.UPDATE_CANVAS_TOOL,

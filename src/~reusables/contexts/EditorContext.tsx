@@ -3,6 +3,8 @@ import DataAttributesEnum from "../constants/dataAttributes";
 
 // available state
 interface IEditorState {
+  canvas: HTMLCanvasElement | null;
+  context: CanvasRenderingContext2D | null;
   commands: string;
   shape: string;
   tool: string;
@@ -12,6 +14,8 @@ interface IEditorState {
 }
 
 const initialState: IEditorState = {
+  canvas: null,
+  context: null,
   commands: "",
   shape: DataAttributesEnum.line,
   tool: "",
@@ -22,9 +26,17 @@ const initialState: IEditorState = {
 
 // available types
 export enum EditorActType {
-  UPDATE_CANVAS_TOOL = "UPDATE_CANVAS_TOOL"
+  UPDATE_CANVAS_TOOL = "UPDATE_CANVAS_TOOL",
+  SET_CANVAS_AND_CONTEXT = "SET_CANVAS_AND_CONTEXT"
 }
 
+interface ISetCanvasAndContext {
+  type: EditorActType.SET_CANVAS_AND_CONTEXT;
+  payload: {
+    canvas: HTMLCanvasElement;
+    context: CanvasRenderingContext2D;
+  };
+}
 // avaiable actions
 interface IUpdateCanvasTool {
   type: EditorActType.UPDATE_CANVAS_TOOL;
@@ -38,7 +50,7 @@ interface IUpdateCanvasTool {
   };
 }
 
-type IEditorActions = IUpdateCanvasTool;
+type IEditorActions = IUpdateCanvasTool | ISetCanvasAndContext;
 
 export const EditorContext = createContext<{
   state: IEditorState;
@@ -48,6 +60,11 @@ export const EditorContext = createContext<{
 function reducer(state: IEditorState, action: IEditorActions): IEditorState {
   switch (action.type) {
     case EditorActType.UPDATE_CANVAS_TOOL:
+      return {
+        ...state,
+        ...action.payload
+      };
+    case EditorActType.SET_CANVAS_AND_CONTEXT:
       return {
         ...state,
         ...action.payload

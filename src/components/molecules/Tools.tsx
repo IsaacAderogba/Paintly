@@ -31,6 +31,7 @@ const Tools: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
     <StyledTools className={className}>
       {tools.map(({ tool, Component }) => (
         <div
+          key={tool}
           css={css`
             background-color: ${tool === state.tool
               ? theme.colors.lightBackground

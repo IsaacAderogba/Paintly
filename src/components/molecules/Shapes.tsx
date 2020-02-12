@@ -32,6 +32,7 @@ const Shapes: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
     <StyledShapes className={className}>
       {shapes.map(({ shape, Component }) => (
         <div
+          key={shape}
           onClick={() =>
             dispatch({
               type: EditorActType.UPDATE_CANVAS_TOOL,

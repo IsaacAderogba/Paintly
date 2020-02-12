@@ -32,6 +32,7 @@ const LineWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
     <StyledLineWidth className={className}>
       {lineWidths.map(({ lineWidth }) => (
         <div
+          key={lineWidth}
           onClick={() =>
             dispatch({
               type: EditorActType.UPDATE_CANVAS_TOOL,
