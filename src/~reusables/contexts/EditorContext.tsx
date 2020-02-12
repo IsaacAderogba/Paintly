@@ -1,10 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import DataAttributesEnum from "../constants/dataAttributes";
+import Paint from "../classes/Paint";
 
 // available state
 interface IEditorState {
-  canvas: HTMLCanvasElement | null;
-  context: CanvasRenderingContext2D | null;
+  paint: Paint | null;
   commands: string;
   shape: string;
   tool: string;
@@ -14,8 +14,7 @@ interface IEditorState {
 }
 
 const initialState: IEditorState = {
-  canvas: null,
-  context: null,
+  paint: null,
   commands: "",
   shape: DataAttributesEnum.line,
   tool: "",
@@ -32,10 +31,7 @@ export enum EditorActType {
 
 interface ISetCanvasAndContext {
   type: EditorActType.SET_CANVAS_AND_CONTEXT;
-  payload: {
-    canvas: HTMLCanvasElement;
-    context: CanvasRenderingContext2D;
-  };
+  payload: Paint;
 }
 // avaiable actions
 interface IUpdateCanvasTool {
@@ -65,9 +61,10 @@ function reducer(state: IEditorState, action: IEditorActions): IEditorState {
         ...action.payload
       };
     case EditorActType.SET_CANVAS_AND_CONTEXT:
+      action.payload.init(state.shape ? state.shape : state.tool);
       return {
         ...state,
-        ...action.payload
+        paint: action.payload
       };
     default:
       return state;

@@ -2,26 +2,25 @@
 import React, { useRef, useEffect, useContext } from "react";
 
 // components/logic
-
-// styles
-import { styled } from "../../~reusables/contexts/ThemeContext";
+import Paint from "../../~reusables/classes/Paint";
 import {
   EditorContext,
   EditorActType
 } from "../../~reusables/contexts/EditorContext";
+
+// styles
+import { styled } from "../../~reusables/contexts/ThemeContext";
 
 const Canvas: React.FC = () => {
   const canvasEl = useRef<HTMLCanvasElement>(null);
   const { dispatch } = useContext(EditorContext);
 
   useEffect(() => {
+    // one time initialization
     if (canvasEl.current) {
       dispatch({
         type: EditorActType.SET_CANVAS_AND_CONTEXT,
-        payload: {
-          canvas: canvasEl.current,
-          context: canvasEl.current.getContext("2d") as CanvasRenderingContext2D
-        }
+        payload: new Paint(canvasEl.current)
       });
     }
   }, [dispatch]);
