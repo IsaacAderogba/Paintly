@@ -7,6 +7,7 @@ interface IEditorState {
   shape: string;
   tool: string;
   linewidth: string;
+  brushWidth: string;
   swatch: string;
 }
 
@@ -15,6 +16,7 @@ const initialState: IEditorState = {
   shape: DataAttributesEnum.line,
   tool: "",
   linewidth: DataAttributesEnum.lineWidth1,
+  brushWidth: DataAttributesEnum.brushWidth1,
   swatch: DataAttributesEnum.black
 };
 
@@ -31,6 +33,7 @@ interface IUpdateCanvasTool {
     shape?: DataAttributesEnum | "";
     tool?: DataAttributesEnum | "";
     linewidth?: DataAttributesEnum | "";
+    brushWidth?: DataAttributesEnum | "";
     swatch?: DataAttributesEnum | "";
   };
 }
