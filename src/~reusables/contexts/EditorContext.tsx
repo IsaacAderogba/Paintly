@@ -56,6 +56,18 @@ export const EditorContext = createContext<{
 function reducer(state: IEditorState, action: IEditorActions): IEditorState {
   switch (action.type) {
     case EditorActType.UPDATE_CANVAS_TOOL:
+      // updates the paint tool where necessary
+      if (
+        state.paint &&
+        ("tool" in action.payload || "shape" in action.payload)
+      ) {
+        if (action.payload.tool) {
+          state.paint.tool = action.payload.tool;
+        } else if (action.payload.shape) {
+          state.paint.tool = action.payload.shape;
+        }
+      }
+
       return {
         ...state,
         ...action.payload

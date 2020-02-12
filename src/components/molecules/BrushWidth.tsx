@@ -32,6 +32,7 @@ const BrushWidth: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
     <StyledBrushWidth className={className}>
       {brushWidths.map(({ brushWidth }) => (
         <div
+          key={brushWidth}
           onClick={() =>
             dispatch({
               type: EditorActType.UPDATE_CANVAS_TOOL,
