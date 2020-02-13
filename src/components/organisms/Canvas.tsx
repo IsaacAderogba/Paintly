@@ -16,8 +16,9 @@ const Canvas: React.FC = () => {
   const { dispatch } = useContext(EditorContext);
 
   useEffect(() => {
-    // one time initialization
     if (canvasEl.current) {
+      canvasEl.current.width = canvasEl.current.offsetWidth;
+      canvasEl.current.height = canvasEl.current.offsetHeight;
       dispatch({
         type: EditorActType.SET_CANVAS_AND_CONTEXT,
         payload: new Paint(canvasEl.current)
