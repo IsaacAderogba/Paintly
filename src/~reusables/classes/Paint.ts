@@ -1,5 +1,5 @@
 import Point from "../classes/Point";
-import { getMouseCoordsOnCanvas } from "../util/mouseCoordinates";
+import { getMouseCoordsOnCanvas, findDistance } from "../util/canvasUtils";
 import DataAttributesEnum from "../constants/dataAttributes";
 
 export default class Paint {
@@ -42,6 +42,7 @@ export default class Paint {
     switch (this.tool) {
       case DataAttributesEnum.line:
       case DataAttributesEnum.rectangle:
+      case DataAttributesEnum.circle:
         this.drawShape();
         break;
       default:
@@ -69,7 +70,18 @@ export default class Paint {
           this.currentPos.x - this.startPos.x,
           this.currentPos.y - this.startPos.y
         );
+      } else if (this.tool === DataAttributesEnum.circle) {
+        let distance = findDistance(this.startPos, this.currentPos);
+        this.context.arc(
+          this.startPos.x,
+          this.startPos.y,
+          distance,
+          0,
+          2 * Math.PI,
+          false
+        );
       }
+
       this.context.stroke();
     }
   }
