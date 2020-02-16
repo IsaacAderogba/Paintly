@@ -17,6 +17,7 @@ const Canvas: React.FC = () => {
 
   useEffect(() => {
     if (canvasEl.current) {
+      // uses the width as defined in the CSS
       canvasEl.current.width = canvasEl.current.offsetWidth;
       canvasEl.current.height = canvasEl.current.offsetHeight;
       dispatch({

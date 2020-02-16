@@ -41,6 +41,7 @@ export default class Paint {
 
     switch (this.tool) {
       case DataAttributesEnum.line:
+      case DataAttributesEnum.rectangle:
         this.drawShape();
         break;
       default:
@@ -57,8 +58,18 @@ export default class Paint {
     if (this.savedData && this.startPos && this.currentPos) {
       this.context.putImageData(this.savedData, 0, 0);
       this.context.beginPath();
-      this.context.moveTo(this.startPos.x, this.startPos.y);
-      this.context.lineTo(this.currentPos.x, this.currentPos.y);
+
+      if (this.tool === DataAttributesEnum.line) {
+        this.context.moveTo(this.startPos.x, this.startPos.y);
+        this.context.lineTo(this.currentPos.x, this.currentPos.y);
+      } else if (this.tool === DataAttributesEnum.rectangle) {
+        this.context.rect(
+          this.startPos.x,
+          this.startPos.y,
+          this.currentPos.x - this.startPos.x,
+          this.currentPos.y - this.startPos.y
+        );
+      }
       this.context.stroke();
     }
   }
