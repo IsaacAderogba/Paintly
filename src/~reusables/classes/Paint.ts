@@ -6,7 +6,8 @@ export default class Paint {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
   _tool: string = "";
-  _lineWidth: number | null = 1;
+  _lineWidth: number = 1;
+  _brushWidth: number = 4;
   startPos: Point | null = null;
   currentPos: Point | null = null;
   savedData: ImageData | null = null;
@@ -25,6 +26,10 @@ export default class Paint {
     this.context.lineWidth = this._lineWidth;
   }
 
+  set brushWidth(brushWidth: string) {
+    this._brushWidth = parseInt(brushWidth);
+  }
+
   init(tool: string) {
     this._tool = tool;
     this.canvas.onmousedown = e => this.onMouseDown(e);
@@ -41,7 +46,11 @@ export default class Paint {
     document.onmouseup = e => this.onMouseUp(e);
     this.startPos = getMouseCoordsOnCanvas(e, this.canvas);
 
-    if (this._tool === DataAttributesEnum.pencil) {
+    if (
+      this._tool === DataAttributesEnum.pencil ||
+      this._tool === DataAttributesEnum.brush
+    ) {
+      this.context.beginPath();
       this.context.moveTo(this.startPos.x, this.startPos.y);
     }
   }
@@ -57,7 +66,10 @@ export default class Paint {
         this.drawShape();
         break;
       case DataAttributesEnum.pencil:
-        this.drawFreeLine();
+        this.drawFreeLine(this._lineWidth);
+        break;
+      case DataAttributesEnum.brush:
+        this.drawFreeLine(this._brushWidth);
         break;
       default:
         break;
@@ -107,7 +119,8 @@ export default class Paint {
     }
   }
 
-  drawFreeLine() {
+  drawFreeLine(toolWidth: number) {
+    this.context.lineWidth = toolWidth;
     if (this.currentPos) {
       this.context.lineTo(this.currentPos.x, this.currentPos.y);
       this.context.stroke();

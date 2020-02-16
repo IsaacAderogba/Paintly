@@ -68,9 +68,11 @@ function reducer(state: IEditorState, action: IEditorActions): IEditorState {
         }
       }
 
-      if (state.paint && action.payload.linewidth) {
+      if (state.paint && action.payload.linewidth)
         state.paint.lineWidth = action.payload.linewidth;
-      }
+
+      if (state.paint && action.payload.brushWidth)
+        state.paint.brushWidth = action.payload.brushWidth;
 
       return {
         ...state,
