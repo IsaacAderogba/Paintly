@@ -62,10 +62,14 @@ function reducer(state: IEditorState, action: IEditorActions): IEditorState {
         ("tool" in action.payload || "shape" in action.payload)
       ) {
         if (action.payload.tool) {
-          state.paint.tool = action.payload.tool;
+          state.paint.activeTool = action.payload.tool;
         } else if (action.payload.shape) {
-          state.paint.tool = action.payload.shape;
+          state.paint.activeTool = action.payload.shape;
         }
+      }
+
+      if (state.paint && action.payload.linewidth) {
+        state.paint.lineWidth = action.payload.linewidth;
       }
 
       return {
