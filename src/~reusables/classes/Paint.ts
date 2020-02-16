@@ -43,6 +43,7 @@ export default class Paint {
       case DataAttributesEnum.line:
       case DataAttributesEnum.rectangle:
       case DataAttributesEnum.circle:
+      case DataAttributesEnum.triangle:
         this.drawShape();
         break;
       default:
@@ -71,15 +72,22 @@ export default class Paint {
           this.currentPos.y - this.startPos.y
         );
       } else if (this.tool === DataAttributesEnum.circle) {
-        let distance = findDistance(this.startPos, this.currentPos);
         this.context.arc(
           this.startPos.x,
           this.startPos.y,
-          distance,
+          findDistance(this.startPos, this.currentPos),
           0,
           2 * Math.PI,
           false
         );
+      } else if (this.tool === DataAttributesEnum.triangle) {
+        this.context.moveTo(
+          this.startPos.x + (this.currentPos.x - this.startPos.x) / 2,
+          this.startPos.y
+        );
+        this.context.lineTo(this.startPos.x, this.currentPos.y);
+        this.context.lineTo(this.currentPos.x, this.currentPos.y);
+        this.context.closePath();
       }
 
       this.context.stroke();
