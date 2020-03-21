@@ -8,6 +8,7 @@ export default class Paint {
   _tool: string = "";
   _lineWidth: number = 1;
   _brushWidth: number = 4;
+  _swatch: DataAttributesEnum = DataAttributesEnum.black;
   startPos: Point | null = null;
   currentPos: Point | null = null;
   savedData: ImageData | null = null;
@@ -28,6 +29,11 @@ export default class Paint {
 
   set brushWidth(brushWidth: string) {
     this._brushWidth = parseInt(brushWidth);
+  }
+
+  set swatch(swatch: DataAttributesEnum) {
+    this._swatch = swatch;
+    this.context.strokeStyle = this._swatch;
   }
 
   init(tool: string) {

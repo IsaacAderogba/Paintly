@@ -74,6 +74,9 @@ function reducer(state: IEditorState, action: IEditorActions): IEditorState {
       if (state.paint && action.payload.brushWidth)
         state.paint.brushWidth = action.payload.brushWidth;
 
+      if (state.paint && action.payload.swatch)
+        state.paint.swatch = action.payload.swatch;
+
       return {
         ...state,
         ...action.payload
